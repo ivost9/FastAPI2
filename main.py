@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -20,5 +20,4 @@ class Numbers(BaseModel):
 def calculate_sum(data: Numbers):
     return {"sum": data.a + data.b}
 
-# ВАЖНО: монтираме static на /static (не на /)
 app.mount("/static", StaticFiles(directory="static"), name="static")
